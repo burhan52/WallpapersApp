@@ -7,6 +7,7 @@
     tools:context="com.gripxtech.Wallpaper.HDWallpaper.ViewActivity">
 
 
+
     <ImageView
         android:id="@+id/viewImage"
         android:layout_width="match_parent"
@@ -17,6 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
 
     <Button
         android:id="@+id/setBackground"
@@ -37,6 +39,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.958" />
+
 
 
 </android.support.constraint.ConstraintLayout>

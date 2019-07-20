@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.gripxtech.Wallpaper.HDWallpaper.R;
 import com.bumptech.glide.Glide;
 
@@ -21,6 +24,7 @@ public class ViewActivity extends AppCompatActivity {
 
     private ImageView imageView;
     private Button setBack;
+    private InterstitialAd mInterstitialAd;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -30,6 +34,7 @@ public class ViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view);
         imageView = findViewById(R.id.viewImage);
         setBack = findViewById(R.id.setBackground);
+        prepaperAD();
 
 
 
@@ -69,7 +74,28 @@ public class ViewActivity extends AppCompatActivity {
             Toast.makeText(this, "Wallpaper not load yet!", Toast.LENGTH_SHORT).show();
         }
     }
+    public void prepaperAD(){
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-5381909867950154/9810475219");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
 
+    }
 
+    @Override
+    public void onBackPressed() {
+        if (mInterstitialAd.isLoaded()){
+            mInterstitialAd.show();
+            mInterstitialAd.setAdListener(new AdListener(){
+                @Override
+                public void onAdClosed() {
+                    super.onAdClosed();
+                    finish();
+                }
+            });
+        }
+        else {super.onBackPressed();
+
+        }
+    }
 }

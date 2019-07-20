@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">HD Wallpaper</string>
+    <string name="addUnit">ca-app-pub-5381909867950154/7069170922</string>
+    <string name="adAppid">ca-app-pub-5381909867950154~5324435299</string>
     <string name="set_as_background">Set As Wallpaper</string>
     <string name="internet">Please Connect The Internet and Restart The Application. Thanks</string>
     <string name="title_activity_main2">Main2Activity</string>

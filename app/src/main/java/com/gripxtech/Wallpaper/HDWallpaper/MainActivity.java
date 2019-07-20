@@ -23,8 +23,11 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 
@@ -33,6 +36,9 @@ import com.gripxtech.Wallpaper.HDWallpaper.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,6 +51,9 @@ public class MainActivity extends AppCompatActivity
     NetworkInfo info;
     ProgressDialog dialog;
     private AdView mAdView;
+    AdView adView;
+
+
 
 
 
@@ -52,10 +61,23 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MobileAds.initialize(this,"ca-app-pub-5381909867950154~5324435299");
+        AdView adView = new AdView(this);
+
+        adView.setAdUnitId("ca-app-pub-5381909867950154/7069170922");
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
+
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
 
         setSupportActionBar(toolbar);
@@ -82,6 +104,7 @@ public class MainActivity extends AppCompatActivity
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
 
         list = new ArrayList<>();
 
@@ -221,6 +244,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -391,6 +415,8 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+
+
 
 
 }
