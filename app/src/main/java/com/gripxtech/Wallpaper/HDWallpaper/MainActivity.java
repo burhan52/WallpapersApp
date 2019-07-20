@@ -334,6 +334,7 @@ public class MainActivity extends AppCompatActivity
 
 
         } else if (id == R.id.rate_us) {
+
             //rateme();
         } else if (id == R.id.more_app) {
 
